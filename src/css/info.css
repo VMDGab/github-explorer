@@ -1,0 +1,19 @@
+@import url("./global.css");
+
+.info{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .5s ease-in-out;
+}
+
+.infos{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.issues{
+    padding-top: 80px;
+}

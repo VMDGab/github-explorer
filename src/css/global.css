@@ -9,16 +9,27 @@
     --titleDark: #F0f0f5;
      --subtitleDark: #A4A4AF;
      --font: "Roboto";
+     --error: #C00133
 }
  
 .darkTheme{
-    background-color: var(--darkBg);
+    background: 
+    url("../assets/github-background-dark.svg")
+     var(--darkBg) 
+     top
+     no-repeat;
     .title{color: var(--titleDark)};
     .subtitle{color: var(--subtitleDark);};
+    .card{background-color: var(--titleLight);}
    }
 
 .lightTheme{
-    background-color: var(--lightBg);
+    background:
+    url("../assets/github-background.svg")
+     var(--lightBg) 
+     top
+     no-repeat;
     .title{color: var(--titleLight)};
     .subtitle{color: var(--subtitleLight);}
+    .card{background-color: var(--mainBg);}
 }

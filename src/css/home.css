@@ -3,10 +3,33 @@
 body{
     margin: 0;
 }
+
 .home{
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     transition: all .5s ease-in-out;
+}
+
+.title{
+    font-family: var(--font);
+    font-size: 40px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.itensContainer{
+    display: flex;
+    flex-direction: column;
+    }
+.titleCard{
+    font-size: 24px;
+    }
+
+#repoContainer{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
 }
