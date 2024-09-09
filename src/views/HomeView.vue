@@ -11,13 +11,13 @@
 
       <div ref="repoContainer"> 
         <CardRepo 
-        v-for="(repo, index) in repositorys" 
+        v-for="(repo, index) in repositories" 
         :key="index"
         :img-url="repo.imgUrl" 
         :repo-title="repo.repoTitle"
         :repo-sub-title="repo.repoSubTitle"
         :repo="repo.repo"
-        navigate="true"
+        details="true"
         />
       </div>
     </div>
@@ -30,7 +30,9 @@ import Header from '@/components/header.vue'
 import Search from '@/components/search.vue'
 import CardRepo from '@/components/cardRepo.vue'
 
-const repositorys = []
+
+const savedRepos = JSON.parse(localStorage.getItem("repos"))
+console.log(savedRepos)
 export default {
   name: 'HomeView',
   components: {
@@ -41,7 +43,7 @@ export default {
   data(){
     return {
       currentTheme: "lightTheme",
-      repositorys: []
+      repositories: savedRepos,
   }
 }, 
 created(){
@@ -59,6 +61,7 @@ methods:{
       this.$refs.div.classList.remove("lightTheme", "darkTheme");
       this.$refs.div.classList.add(theme)
     }
+    console.log(this.repositories)
   },
   themeChanged(newTheme){
     this.currentTheme = newTheme
@@ -68,14 +71,17 @@ methods:{
   },
 
   newRepo(newRepo){
-    console.log(newRepo)
-    this.repositorys.push({
+    this.repositories.push({
       imgUrl: newRepo.photo,
       repoTitle: newRepo.name,
       repoSubTitle: newRepo.desc,
       repo: newRepo.repo
     })
-
+    this.saverepositories()
+  },
+  saverepositories(){
+    console.log(this.repositories)
+    localStorage.setItem('repos', JSON.stringify(this.repositories))
   }
 }
 }

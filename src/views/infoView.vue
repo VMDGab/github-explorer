@@ -3,7 +3,7 @@
       <div class="itensContainer">
         <Header @theme-changed="themeChanged" go-back="true"/>
         <CardRepo 
-        v-for="(repo, index) in repositorys" 
+        v-for="(repo, index) in repositories" 
         :key="index"
         :img-url="repo.imgUrl" 
         :repo-title="repo.repoTitle"
@@ -12,19 +12,19 @@
         />
         <div class="infos">
           <InfoRepo 
-          v-for="(repo, index) in repositorys" 
+          v-for="(repo, index) in repositories" 
           :key="index"
           :stat="repo.stars"
           type-stat="Stars"
           />
           <InfoRepo 
-          v-for="(repo, index) in repositorys" 
+          v-for="(repo, index) in repositories" 
           :key="index"
           :stat="repo.forks"
           type-stat="Forks"
           />
           <InfoRepo 
-          v-for="(repo, index) in repositorys" 
+          v-for="(repo, index) in repositories" 
           :key="index"
           :stat="repo.issues"
           type-stat="Issues abertas"
@@ -36,6 +36,7 @@
           :key="index"
           :repo-title="repo.issueTitle"
           :repo-sub-title="repo.author"
+          :url="repo.url"
           issue="true"
           />
         </div>
@@ -49,6 +50,7 @@ import Header from '@/components/header.vue'
 import CardRepo from '@/components/cardRepo.vue'
 import InfoRepo from '@/components/infoRepo.vue'
 import axios from 'axios';
+
 const theme = localStorage.getItem("theme")
 
 export default {
@@ -60,7 +62,7 @@ export default {
   },
   data(){
     return {
-      repositorys : [],
+      repositories : [],
       issues : [],
       currentTheme: theme,
   }
@@ -82,7 +84,7 @@ methods:{
   },
   fetchParams(repoId){
     axios.get(`https://api.github.com/repos/${repoId}`).then(response => {
-      this.repositorys.push({
+      this.repositories.push({
       imgUrl: response.data.owner.avatar_url,
       repoTitle:response.data.full_name,
       repoSubTitle:response.data.description,
@@ -98,7 +100,6 @@ methods:{
         issueTitle:response.data[i].title,
         url:response.data[i].html_url,
         })
-        console.log(this.issues[1])
       }
     })
     })

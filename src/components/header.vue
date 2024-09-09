@@ -68,6 +68,7 @@ export default {
     font-size: 16px;
     transition: all .4s ease-in-out;
     z-index: 1;
+    cursor: pointer;
 }
 .btn:active{
 transform: scale(.95);
@@ -87,5 +88,6 @@ transform: scale(.95);
 .btnGoBack{
     color: var(--subtitleLight);
     font-size: 20px;
+    cursor: pointer;
 }
 </style>

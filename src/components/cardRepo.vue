@@ -1,5 +1,5 @@
 <template>
-    <div ref="card" class="card" @click="details">
+    <div ref="card" class="card" @click="navigation">
             <img ref="icon" :src="imgUrl" class="iconOwner"/>
             <div ref="textContainer" class="texts">
                 <span ref="title" class="title titleCard">{{ repoTitle }}</span>
@@ -18,18 +18,21 @@ export default{
         repoSubTitle: String,
         scale: String,
         issue: String,
-        navigate: String,
-        repo: String
+        details: String,
+        issueNavigate: String,
+        repo: String,
+        url: String,
     },
     mounted(){
         this.defaultCard()            
     },
     methods:{
-        details(){
-            if(this.navigate == "true"){
+        navigation(){
+            this.details == "true" ? this.detailsPage() : this.issuePage()
+        },
+        detailsPage(){
                 const id = this.repo
                 this.$router.push({ name: 'info', params: { id } });
-            }
         },
         defaultCard(){
             this.scale == "true" ? this.bigCard() : this.issue == "true" ? this.cardIssue() : ""
@@ -48,8 +51,12 @@ export default{
         cardIssue(){
                this.$refs.icon.style.display = "none"
                this.$refs.card.style.width = "100%"
-                this.$refs.subtitle.style.width = "100%"
+               this.$refs.subtitle.style.width = "100%"
+        },
+        issuePage(){
+            window.location.href= this.url
         }
+        
 
     }
 }
@@ -65,7 +72,7 @@ export default{
         margin-bottom: 16px;
         transition: all .5s ease-in-out;
         z-index: 1;
-
+        cursor: pointer;
     }
     .iconOwner{
         width: 60px;
