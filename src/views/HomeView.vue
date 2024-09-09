@@ -30,9 +30,10 @@ import Header from '@/components/header.vue'
 import Search from '@/components/search.vue'
 import CardRepo from '@/components/cardRepo.vue'
 
-
 const savedRepos = JSON.parse(localStorage.getItem("repos"))
-console.log(savedRepos)
+let repos = []
+savedRepos != null ? repos = savedRepos : repos = []
+
 export default {
   name: 'HomeView',
   components: {
@@ -43,7 +44,7 @@ export default {
   data(){
     return {
       currentTheme: "lightTheme",
-      repositories: savedRepos,
+      repositories: repos,
   }
 }, 
 created(){
