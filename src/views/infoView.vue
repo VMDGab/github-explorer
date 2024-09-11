@@ -49,7 +49,6 @@
 import Header from '@/components/header.vue'
 import CardRepo from '@/components/cardRepo.vue'
 import InfoRepo from '@/components/infoRepo.vue'
-import axios from 'axios';
 
 const theme = localStorage.getItem("theme")
 
@@ -83,7 +82,7 @@ methods:{
     }
   },
   fetchParams(repoId){
-    axios.get(`https://api.github.com/repos/${repoId}`).then(response => {
+      this.$api.requests.getRepo(repoId).then(response => {
       this.repositories.push({
       imgUrl: response.data.owner.avatar_url,
       repoTitle:response.data.full_name,
@@ -93,7 +92,7 @@ methods:{
       stars: response.data.stargazers_count,
     })
 
-    axios.get(`https://api.github.com/repos/${repoId}/issues`).then(response => {
+    this.$api.requests.getIssues(repoId).then(response => {
         for(let i = 0; i < response.data.length; i++){
         this.issues.push({
         author: response.data[i].user.login,

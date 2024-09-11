@@ -9,14 +9,13 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default{
     name:"Search",
     methods:{
         toggleSearch(){
             const repoSearch = this.$refs.search.value
-             axios.get(`https://api.github.com/repos/${repoSearch}`).then(response => {
+            this.$api.requests.getRepo(repoSearch).then(response => {
                 const newRepo = {
                     name: response.data.full_name,
                     desc: response.data.description,

@@ -47,15 +47,16 @@ export default {
       repositories: repos,
   }
 }, 
-created(){
-  if(!localStorage.getItem("theme")){
-    localStorage.setItem("theme", this.currentTheme)
-  }
-},
 mounted(){
     this.setTheme()
+    this.setLocalTheme()
 },
 methods:{
+  setLocalTheme(){
+      if(!localStorage.getItem("theme")){
+    localStorage.setItem("theme", this.currentTheme)
+  }
+  },
   setTheme(){
     const theme = localStorage.getItem("theme")
     if(theme){
